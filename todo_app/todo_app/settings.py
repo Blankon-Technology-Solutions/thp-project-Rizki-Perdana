@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,9 +49,10 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.linkedin_oauth2',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.openid_connect',
     'todo_api',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -82,6 +84,7 @@ TEMPLATES = [
     },
 ]
 
+ASGI_APPLICATION = 'todo_app.asgi.application'
 WSGI_APPLICATION = 'todo_app.wsgi.application'
 
 
@@ -124,6 +127,19 @@ AUTHENTICATION_BACKENDS = [
 
 
 SOCIALACCOUNT_PROVIDERS = {
+    "openid_connect": {
+        "APPS": [
+            {
+                "provider_id": "linkedin-server",
+                "name": "LinkedIn OIDC",
+                "client_id": config('LINKEDIN_OIDC_ID'),
+                "secret": config('LINKEDIN_OIDC_SECRET'),
+                "settings": {
+                    "server_url": "https://www.linkedin.com/oauth",
+                },
+            }
+        ]
+    },
     'google': {
         'SCOPE': ['profile', 'email'],
         'AUTH_PARAMS': {'access_type': 'offline'},
@@ -170,3 +186,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 HASHID_FIELD_SALT = "dbkkY4IL.5Ln8wQ_iqO8):Z5Y3Ihm?WdV)?bfo!bl68BfMIeK#I_L)cHODGF"
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}

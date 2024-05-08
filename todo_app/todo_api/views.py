@@ -1,4 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
+from django.shortcuts import render
 from rest_framework import permissions
 from drf_rw_serializers import viewsets
 from todo_api.filters import TodoFilter
@@ -21,3 +22,6 @@ class TodoViewSet(viewsets.ModelViewSet):
             return TodoSerializer
 
         return TodoDeSerializer
+    
+def websocket(request):
+    return render(request, "websocket.html")
