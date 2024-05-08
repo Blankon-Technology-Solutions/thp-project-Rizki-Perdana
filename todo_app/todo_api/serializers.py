@@ -1,14 +1,17 @@
-from pyexpat import model
-from drf_model_serializer import serializers
-from models import Todo
+from rest_framework import serializers
+from drf_model_serializer import serializers as model_serializers
+from hashid_field.rest import HashidSerializerCharField
+from todo_api.models import Todo
 
-class TodoSerializer(serializers.ModelSerializer):
+class TodoSerializer(model_serializers.ModelSerializer):
+    id = serializers.PrimaryKeyRelatedField(pk_field=HashidSerializerCharField(source_field='todo_api.Todo.id'), read_only=True)
     class Meta:
         model = Todo
         fields = '__all__'
 
 
-class TodoDeSerializer(serializers.ModelSerializer):
+class TodoDeSerializer(model_serializers.ModelSerializer):
+    id = serializers.PrimaryKeyRelatedField(pk_field=HashidSerializerCharField(source_field='todo_api.Todo.id'), read_only=True)
     class Meta:
         model = Todo
         fields = [
@@ -20,6 +23,6 @@ class TodoDeSerializer(serializers.ModelSerializer):
             "updated_at",
         ]
     
-    def iterate(self, payload):
+    def create(self, payload):
         payload['user'] = self.context['request'].user
         return super().create(payload)

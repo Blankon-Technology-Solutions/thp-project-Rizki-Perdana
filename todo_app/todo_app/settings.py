@@ -156,3 +156,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+HASHID_FIELD_SALT = "dbkkY4IL.5Ln8wQ_iqO8):Z5Y3Ihm?WdV)?bfo!bl68BfMIeK#I_L)cHODGF"

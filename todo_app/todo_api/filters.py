@@ -1,6 +1,5 @@
-from pyexpat import model
 from django_filters import FilterSet, CharFilter, BooleanFilter
-from models import Todo
+from todo_api.models import Todo
 
 
 class TodoFilter(FilterSet):
