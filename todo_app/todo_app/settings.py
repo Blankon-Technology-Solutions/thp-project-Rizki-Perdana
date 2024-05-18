@@ -17,6 +17,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -145,6 +147,8 @@ SOCIALACCOUNT_PROVIDERS = {
         'AUTH_PARAMS': {'access_type': 'offline'},
     }
 }
+
+ACCOUNT_ADAPTER = 'todo_api.routing.AccountAdapter'
 
 LOGIN_REDIRECT_URL = '/todo_api/'
 LOGIN_URL = '/todo_api/'

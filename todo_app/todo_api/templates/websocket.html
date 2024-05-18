@@ -12,7 +12,7 @@
     <button onclick="sendMessage()">Send Message</button>
 
     <script>
-        const websocket = new WebSocket('ws://localhost:8000/socket/todos/'); // WebSocket server URL
+        const websocket = new WebSocket('ws://127.0.0.1:8000/socket/todos/'); // WebSocket server URL
 
         websocket.onopen = () => {
             console.log('WebSocket connection established.');
