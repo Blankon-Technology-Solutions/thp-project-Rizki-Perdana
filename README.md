@@ -21,3 +21,23 @@ First of all, congratulations on reaching this step in the interview series. The
 ## When you are done
 - 🫸 push your code to this repository, or if you put it in different branch please merge to main branch 🫸
 - 🏷️ Go to issues tab, you will have 1 open issue please label that issue to Ready to Review 🏷️ 
+
+
+
+## Result
+### First time access on url
+![home](1-screenshoot-home.png)
+
+### Login page on `base_url/auths/`
+![login](2-screenshoot-login.png)
+
+### Websocket on `base_url/websocket/`
+![websocket](3-screenshoot-websocket.png)
+
+### Configure google and linkedin url via django admin
+![admin](4-screenshoot-admin.png)
+
+### Final home
+![homecontent](5-screenshoot-homecontent.png)
+
+NOTE: Coverage report included
